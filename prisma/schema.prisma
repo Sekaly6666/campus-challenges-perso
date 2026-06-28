@@ -1,0 +1,63 @@
+
+generator client{
+    provider="prisma-client-js"
+
+}
+
+
+datasource db {
+
+  provider="postgresql"
+  url=env( "DATABASE_URL") 
+
+}
+
+
+
+model Student{
+
+  id String @id @default ( cuid() ) 
+  name String                         
+  email String @unique             
+   bio String?                        
+  createdAt DateTime @default( now())      
+
+  challenges Challenge[]      
+   participations Participation []  
+
+}
+
+
+
+
+model Challenge {
+  id String @id @default( cuid())
+   title String                        
+    description String                       
+  authorId  String                        
+     createdAt DateTime @default( now())     
+
+
+  author Student @relation(fields: [ authorId ], references:[ id] )
+  participations Participation[]                          
+
+
+}
+
+
+
+model Participation {
+
+  id String @id @default(cuid()) 
+   text String                        
+  link String?                     
+   studentId String                       
+  challengeId String                        
+    createdAt DateTime @default(now())     
+
+
+    student Student @relation( fields: [studentId ] , references: [ id] )     
+  challenge Challenge @relation(fields: [challengeId], references:[id])  
+
+
+}
