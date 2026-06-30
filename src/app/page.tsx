@@ -6,17 +6,29 @@ export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
 
-  const challenges=await prisma.challenge.findMany({
-    include: { author: true,_count: { select: { participations: true } }, },
-    orderBy: { createdAt: 'desc' },
+  let challenges = []
+  let studentCount = 0
+  let dbError = null
 
-  })
-
-  const studentCount= await prisma.student.count()
+  try {
+    challenges = await prisma.challenge.findMany({
+      include: { author: true, _count: { select: { participations: true } } },
+      orderBy: { createdAt: 'desc' },
+    })
+    studentCount = await prisma.student.count()
+  } catch (error: any) {
+    console.error("Database Connection Error:", error)
+    dbError = error.message
+  }
 
   return (
-
     <div>
+      {dbError && (
+        <div style={{ backgroundColor: '#fee2e2', color: '#991b1b', padding: '1rem', margin: '1rem', borderRadius: '0.5rem', border: '1px solid #f87171' }}>
+          <h3 style={{ fontWeight: 'bold' }}>Erreur de base de données :</h3>
+          <p>{dbError}</p>
+        </div>
+      )}
       <div className="hero-section">
         <div className="hero-badge"> Plateforme étudiante</div>
         <h1 className="hero-title"> Relève des défis <br />
