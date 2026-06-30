@@ -22,46 +22,54 @@ export default async function ChallengePage({ params }: { params: { id: string }
 
   return (
 
-    <div className="max-w-2xl mx-auto">
-      <Link href="/" className="text-slate-500 hover:text-white text-sm mb-6 inline-flex items-center gap-1 transition-colors"> Retour</Link>
+    <div className="page-container">
+      <Link href="/" className="back-link"> Retour</Link>
 
   
-      <div className="card mb-6">
+      <div className="challenge-detail-card">
 
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <h1 className="text-2xl font-bold text-white">{challenge.title}</h1>
+        <div className="challenge-detail-header">
+          <h1 className="challenge-detail-title">{challenge.title}</h1>
         </div>
 
-        <p className="text-slate-300 leading-relaxed mb-4">{challenge.description}</p>
-        <div className="flex items-center gap-4 text-xs text-slate-500 pt-3 border-t border-white/10">
-          <span>Publié par <span className="text-slate-300">{challenge.author.name}</span> <span className="text-slate-500 font-mono text-[10px]">({challenge.author.id})</span></span>
-          <span>{new Date(challenge.createdAt).toLocaleDateString('fr-FR')}</span>
-          <span>{challenge.participations.length} participation{challenge.participations.length !== 1 ? 's' : ''}</span>
+        <p className="challenge-detail-desc">{challenge.description}</p>
+        <div className="challenge-detail-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+          <div>
+            <span>Publié par <span className="challenge-detail-author">{challenge.author.name} </span></span>
+            <span style={{ margin: '0 10px' }}>-</span>
+              <span>{new Date(challenge.createdAt).toLocaleDateString('fr-FR')}</span>
+          </div>
+
+          <div>
+            <span style={{ fontWeight: 'bold', color: 'blue' }}>
+                {challenge.participations.length} participation{challenge.participations.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+
         </div>
       </div>
 
-
       {challenge.participations.length > 0 && (
-        <div className="mt-8">
-          <h2 className="text-lg font-semibold text-white mb-4"> Participations ({challenge.participations.length})</h2>
+        <div className="participations-section">
+          <h2 className="section-title"> Participations ({challenge.participations.length})</h2>
 
-          <div className="space-y-3">
+          <div className="participations-list">
             {challenge.participations.map((p) => (
-              <div key={p.id} className="card">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-medium text-indigo-400">{p.student.name}</span>
-                    <span className="text-xs text-slate-500 font-mono" title="ID de l'étudiant">({p.student.id})</span>
+              <div key={p.id} className="participation-card">
+                <div className="participation-header">
+                  <div className="participation-author">
+                    <span className="participation-author-name">{p.student.name}</span>
                   </div>
 
-                  <span className="text-xs text-slate-500">
+                  <span className="participation-date">
                     {new Date(p.createdAt).toLocaleDateString('fr-FR')}
                   </span>
-
+                  <div className="clear-both"></div>
                 </div>
 
-                <p className="text-slate-300 text-sm mb-2">{p.text}</p>
-                {p.link && ( <a href={p.link}  target="_blank"  rel="noopener noreferrer" className="text-xs text-indigo-400 hover:underline truncate block" >  {p.link}</a>  )}
+                <p className="participation-content">{p.text}</p>
+                {p.link && ( <a href={p.link}  target="_blank"  rel="noopener noreferrer" className="participation-link-block" >{p.link}</a>  )}
               </div>
 
             ))}

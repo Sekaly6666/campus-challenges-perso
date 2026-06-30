@@ -1,72 +1,57 @@
-# Campus Challenges
-Mini-plateforme où des étudiants peuvent créer un profil, publier des défis, participer et voir les participations.
+Campus Challenges
+Mini-plateforme où des étudiants peuvent créer un profil, publier des défis, participer et voir les participations
 
-## Stack technique
+Stack technique utiliser
 
-- **Next.js 14** (App Router)
-- **TypeScript**
-- **Prisma** (ORM)
-- **PostgreSQL** (base de données)
-- **Tailwind CSS** (styling)
-- **Vercel** (déploiement)
+- Next.js 14 (App Router)
+- TypeScript
+- Prisma (ORM)
+- PostgreSQL (base de données)
+- CSS (Pure)
+- Vercel (déploiement)
 
-## Installation locale
 
-### 1. Cloner le projet
 
-```bash
+Installation locale
+
+1. Cloner le projet
+
+
 git clone https://github.com/Sekaly6666/campus-challenges-perso.git
-cd campus-challenges
-```
+cd campus-challenges-perso
 
-### 2. Installer les dépendances
 
-```bash
+2. Installer les dépendances
 npm install
-```
 
-### 3. Configurer l'environnement
 
-```bash
+3. Configurer l'environnement
 cp .env.example .env
-```
 
-Remplis `DATABASE_URL` avec ta connexion PostgreSQL.  
-> Recommandé : crée une base gratuite sur [neon.tech](https://neon.tech)
 
-### 4. Initialiser la base de données
-
-```bash
+4. Initialiser la base de données
 npx prisma migrate dev --name init
-```
 
-### 5. Lancer le serveur de développement
 
-```bash
+5. Lancer le serveur de développement
 npm run dev
-```
 
-## Fonctionnalités
+6. voir le contenu de la base de données prisma
+npx prisma studio
+
+Fonctionnalités
 
 - Créer un profil étudiant
 - Afficher la liste des défis
-- Créer un défi (avec catégorie)
+- Créer un défi 
 - Voir le détail d'un défi
-- Participer à un défi (texte + lien)
+- Participer à un défi (texte ou lien)
 - Afficher les participations d'un défi
 
-## Déploiement sur Vercel
 
-1. Push le code sur GitHub
-2. Importer le projet sur [vercel.com](https://vercel.com)
-3. Ajouter la variable `DATABASE_URL` dans Settings > Environment Variables
-4. Déployer
-
-## Difficultés rencontrées
+Difficultés rencontrées
 
 - Configuration de Prisma avec Next.js App Router
-- Gestion du singleton PrismaClient en développement
-- Dynamic routes avec TypeScript strict
-
----
-
+- A creer les modeles prisma
+- Configuration des API routes
+- Gestion des erreurs

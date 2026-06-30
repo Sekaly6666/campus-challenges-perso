@@ -15,10 +15,10 @@ export default async function ParticipatePage() {
   })
 
   return (
-    <div className="max-w-xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-white mb-1">Participer à un défi</h1>
-        <p className="text-slate-400 text-sm">Sélectionne un défi et propose ta solution</p>
+    <div className="form-container">
+      <div className="form-header">
+        <h1 className="form-title">Participer à un défi</h1>
+        <p className="page-subtitle">Sélectionne un défi et propose ta solution</p>
       </div>
 
       <GlobalParticipateForm challenges={challenges} students={students} />

@@ -51,17 +51,16 @@ export default function GlobalParticipateForm({ challenges, students }: { challe
 
   if (success) {
     return (
-      <div className="card border-green-500/30 bg-green-500/5 text-center py-6">
-        <p className="text-green-400 font-medium">Participation envoyée </p>
-        <button onClick={() => setSuccess(false)} className="btn-secondary mt-3 text-sm">Faire une autre participation  </button>
+      <div className="card success-msg-container">
+        <p className="success-msg-text">Participation envoyée </p>
+        <button onClick={() => setSuccess(false)} className="btn-secondary mt-15">Faire une autre participation  </button>
       </div>
-
     )
   }
 
   return (
     <div className="card">
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit}>
         <div>
           <label className="label">Choisis un défi </label>
           <select className="input" value={form.challengeId} onChange={(e) => setForm({ ...form, challengeId: e.target.value })}required>
@@ -70,7 +69,6 @@ export default function GlobalParticipateForm({ challenges, students }: { challe
               <option key={c.id} value={c.id}>{c.title}</option>
             ))}
           </select>
-
         </div>
 
         <div>
@@ -84,7 +82,7 @@ export default function GlobalParticipateForm({ challenges, students }: { challe
 
         <div>
           <label className="label">Ta réponse et solution </label>
-          <textarea className="input min-h-[100px] resize-y" placeholder="Décris ta solution" value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })}  required   />
+          <textarea className="input textarea" placeholder="Décris ta solution" value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })}  required   />
         </div>
 
         <div>
@@ -93,8 +91,8 @@ export default function GlobalParticipateForm({ challenges, students }: { challe
             className="input" placeholder="https://sekou.com/ton-repo" type="url"  value={form.link}  onChange={(e) => setForm({ ...form, link: e.target.value })} />
         </div>
 
-        {error && <p className="text-red-400 text-sm">{error}</p>}
-        <button type="submit" disabled={loading} className="btn-primary w-full"> {loading ? 'Envoi' : 'Envoyer ma participation'}</button>
+        {error && <p className="form-error">{error}</p>}
+        <button type="submit" disabled={loading} className="btn-primary w-100 mt-15"> {loading ? 'Envoi' : 'Envoyer ma participation'}</button>
 
       </form>
       

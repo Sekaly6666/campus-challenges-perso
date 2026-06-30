@@ -29,18 +29,18 @@ export default function CreateProfilePage() {
   if (created) {
 
     return (
-      <div className="max-w-xl mx-auto">
-        <div className="card text-center py-10">
+      <div className="form-container">
+        <div className="success-msg-container">
 
-          <h2 className="text-xl font-bold text-white mb-2">Profil créé </h2>
-          <p className="text-slate-400 mb-6">
-            Bienvenue <span className="text-indigo-400">{created.name}</span>
+          <h2 className="success-title">Profil créé </h2>
+          <p className="success-subtitle">
+            Bienvenue <span className="success-highlight">{created.name}</span>
           </p>
-          <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-4 mb-6">
-            <p className="text-xs text-slate-500 mb-1">Ton ID étudiant </p>
-            <p className="font-mono text-indigo-400 text-sm break-all">{created.id}</p>
+          <div className="id-display-box">
+            <p className="id-display-label">Ton ID étudiant </p>
+            <p className="id-display-value">{created.id}</p>
           </div>
-          <p className="text-xs text-slate-500">
+          <p className="id-display-hint">
             Utilise cet ID pour créer des défis et participer
           </p>
         </div>
@@ -49,31 +49,31 @@ export default function CreateProfilePage() {
   }
 
   return (
-    <div className="max-w-xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-white mb-1"> Créer mon profil</h1>
+    <div className="form-container">
+      <div className="form-header">
+        <h1 className="form-title"> Créer mon profil</h1>
       </div>
 
       <div className="card">
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="form-content">
           <div>
             <label className="label">Nom complet </label>
-            <input className="input" placeholder="Jean Dupont" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+            <input className="input" placeholder="Sekou Bamba" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
           </div>
 
           <div>
             <label className="label">E-mail </label>
-            <input className="input"type="e-mail"placeholder="sekou@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required/>
+            <input className="input" type="e-mail" placeholder="sekou@bamba.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required/>
           </div>
 
           <div>
             <label className="label">Bio</label>
-            <textarea className="input min-h-[90px] resize-y" placeholder="Présente toi en quelques mots" value={form.bio} onChange={(e) => setForm({ ...form, bio: e.target.value })}/>
+            <textarea className="textarea" placeholder="Présente toi en quelques mots" value={form.bio} onChange={(e) => setForm({ ...form, bio: e.target.value })}/>
           </div>
 
-          {error && <p className="text-red-400 text-sm bg-red-500/10 rounded-lg px-3 py-2">{error}</p>}
+          {error && <p className="form-error">{error}</p>}
 
-          <button type="submit" disabled={loading} className="btn-primary w-full">
+          <button type="submit" disabled={loading} className="btn-primary-full">
             {loading ? 'Création' : 'Créer mon profil'}
           </button>
           

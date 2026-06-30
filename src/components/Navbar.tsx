@@ -13,15 +13,15 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="border-b border-white/10 bg-[#0f0f1a]/80 backdrop-blur sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/" className="font-bold text-lg text-indigo-400 tracking-tight">
-          Campus<span className="text-white"> Challenges</span>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <Link href="/" className="navbar-brand">
+          Campus<span className="navbar-brand-highlight"> Challenges</span>
         </Link>
 
-        <div className="flex items-center gap-1">
+        <div className="navbar-links">
           {links.map((l) => (
-            <Link key={l.href}href={l.href} className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${path === l.href ? 'bg-indigo-500/20 text-indigo-400' : 'text-slate-400 hover:text-white hover:bg-white/5'}`} > {l.label} </Link>
+            <Link key={l.href}href={l.href} className={`navbar-link ${path === l.href ? 'active' : ''}`} > {l.label} </Link>
           ))}
         </div>
 
